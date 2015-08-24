@@ -1,0 +1,19 @@
+#
+# Gitignore file. Tells git what we don't care about.
+# Ignore the following:
+#
+
+# Compiled Python files
+*.pyc
+
+# SQLite databases
+*.db
+
+# Mac Garbage 
+*.DS_Store
+
+# Bower Components
+bower_components/
+
+# Vim Swap files
+*.swp

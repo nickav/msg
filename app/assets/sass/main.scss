@@ -1,0 +1,29 @@
+// Plugins:
+@import "bower_components/bourbon/app/assets/stylesheets/bourbon";
+@import "bower_components/neat/app/assets/stylesheets/neat";
+@import "bower_components/normalize-scss/normalize";
+
+// Modules:
+@import "variables";
+@import "base";
+
+.error_page {
+  padding: 0 10%;
+  margin: 5em 0;
+  text-align: center;
+  
+  .callout {
+    display: block;
+    font-size: 4em;
+    font-weight: 200;
+    color: $primary;
+  }
+  
+  h3 {
+    color: $light-gray;
+  }
+  
+  img {
+    padding: 0.5em;
+  }
+}

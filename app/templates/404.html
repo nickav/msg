@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+<!-- 404: File Not Found -->
+<div class="error_page">
+  <h1>
+    <span class="callout">404</span>
+    Not sure what you're looking for.
+  </h1>
+  <h3 id="question">
+    Have you tried turning it on and off again?
+  </h3>
+</div>
+  
+<script type="text/javascript">
+  var question = document.getElementById('question');
+  var questions = ['Have you tried turing it off and on again?',
+                   'Ever feel like you\'re in the wrong place?',
+                   'Here\'s a picture of a puppy instead:<br><img src="/images/puppy.jpg" />'
+                  ];
+
+  var randomIndex = Math.floor(Math.random() * questions.length);
+  question.innerHTML = questions[randomIndex];
+</script>
+  
+{% endblock %}

@@ -1,0 +1,29 @@
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+// font smoothing
+body, input {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: antialiased;
+  font-weight: normal;
+}
+
+body {
+  color: $dark-gray;
+  font-family: $body-font;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+}

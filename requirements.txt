@@ -1,0 +1,8 @@
+flask
+flask-restful
+flask-sqlalchemy
+flask-wtf
+jinja2
+ipython
+nose
+factory_boy
