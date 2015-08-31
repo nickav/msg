@@ -1,11 +1,22 @@
 # Import flask and template operators
 from flask import Flask, Response, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
+from werkzeug.routing import BaseConverter
 
 # Define the WSGI application object
 app = Flask(__name__, static_url_path='')
 # Configure flask
 app.config.from_object('config')
+
+# routes with lists
+class ListConverter(BaseConverter):
+    def to_python(self, value):
+        return value.split(',')
+
+    def to_url(self, values):
+        return ','.join(BaseConverter.to_url(value) for value in values)
+
+app.url_map.converters['list'] = ListConverter
 
 # Define the database object which is imported
 # by modules and controllers
