@@ -1,1 +1,430 @@
-{% extends "base.html" %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Messaging API &mdash; Messaging API 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/better.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Messaging API 1.0 documentation" href="#" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/main.css" type="text/css" />
+    <script src="/javascript/main.js" type="text/javascript"></script>
+  </head>
+  <body role="document">
+  <div class="related top">
+  <nav id="rellinks">
+    <ul>
+    </ul>
+  </nav>
+  <nav id="breadcrumbs">
+    <ul>
+      <li><a href="#">Messaging API 1.0 documentation</a></li> 
+    </ul>
+  </nav>
+  </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="messaging-api">
+<h1>Messaging API<a class="headerlink" href="#messaging-api" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the Messaging API, a RESTful API for sending and receiving messages. All endpoints return JSON responses.</p>
+<div class="section" id="users">
+<h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The Users object represents a user that can send and receive messages. The user object looks like this:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;created_time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue, 25 Aug 2015 18:30:27 GMT&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ben&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;full_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Ben Bederson&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;received_messages&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;sent_messages&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where received_messages and sent_messages are arrays of sent and recieved <a class="reference external" href="#id5">Messages</a>.</p>
+<p>The following actions can be performed on messages:</p>
+</div></blockquote>
+<dl class="post">
+<dt id="post--users-login">
+<code class="descname">POST </code><code class="descname">/users/login</code><a class="headerlink" href="#post--users-login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login a user</p>
+<p>Verifies there is a valid username and password on the messaging server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; the username</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; the password</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises 400:</th><td class="field-body"><p class="first">if the login credentials are invalid or username/password is empty</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the <a class="reference external" href="#users">user object</a> on the messaging server</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--users">
+<code class="descname">GET </code><code class="descname">/users</code><a class="headerlink" href="#get--users" title="Permalink to this definition">¶</a></dt>
+<dd><p>List All Users</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">an Array of <a class="reference external" href="#users">Users</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Request</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/users">/users</a></li>
+</ul>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--users">
+<code class="descname">POST </code><code class="descname">/users</code><a class="headerlink" href="#post--users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a New User</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; the username. Must be unique and consist solely of lowercase letters, numbers and underscores</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; the password. Must be at least 8 characters long</li>
+<li><strong>full_name</strong> (<em>optional</em>) &#8211; the full name of the user. For example, &#8220;John Doe&#8221;</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises 400:</th><td class="field-body"><p class="first">if any required parameters are omitted or an error occurs</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the user_id of the user created</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--users-(int-user_id)-conversations-(int-with_user_id)">
+<code class="descname">GET </code><code class="descname">/users/</code><span class="sig-paren">(</span><em class="property">int: </em><em>user_id</em><span class="sig-paren">)</span><code class="descname">/conversations/</code><span class="sig-paren">(</span><em class="property">int: </em><em>with_user_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--users-(int-user_id)-conversations-(int-with_user_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="/users/1/conversations/2">Show a Conversation Between Two Users</a></p>
+<p>Shows all the messages sent between the two users <cite>user_id</cite> and <cite>with_user_id</cite> (can be empty if the users have not sent each other messages yet).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>int</em>) &#8211; the first user_id</li>
+<li><strong>with_user_id</strong> (<em>int</em>) &#8211; the second user_id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an Array of <a class="reference external" href="#id5">Messages</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Requests</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/users/1/conversations/2">/users/1/conversations/2</a></li>
+<li><a class="reference external" href="/users/2/conversations/3">/users/2/conversations/3</a></li>
+</ul>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--users-(int-user_id)-conversations">
+<code class="descname">GET </code><code class="descname">/users/</code><span class="sig-paren">(</span><em class="property">int: </em><em>user_id</em><span class="sig-paren">)</span><code class="descname">/conversations</code><a class="headerlink" href="#get--users-(int-user_id)-conversations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show All Conversations a User Has</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>int</em>) &#8211; the user_id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">an Array of conversations this user has with other users (or herself) ordered by most recent conversations</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises 404:</th><td class="field-body"><p class="first last">if the user could not be found</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Requests</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/users/1/conversations">/users/1/conversations</a></li>
+<li><a class="reference external" href="/users/2/conversations">/users/2/conversations</a></li>
+</ul>
+<p><strong>Example Response</strong>:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;conversations&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;last_message&quot;</span><span class="p">:</span> <span class="s2">&quot;hi&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;full_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Tak Yeon Lee&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;read&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;sent_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-14 14:10:52.953327&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;user_id&quot;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;last_message&quot;</span><span class="p">:</span> <span class="s2">&quot;awesome, sounds good. see you Wednesday&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;full_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Nick Aversano&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;read&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;sent_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2015-10-14 14:10:52.953083&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;user_id&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--users-(int-user_id)">
+<code class="descname">GET </code><code class="descname">/users/</code><span class="sig-paren">(</span><em class="property">int: </em><em>user_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--users-(int-user_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a User</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_id</strong> (<em>int</em>) &#8211; the integer id of the user</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a User object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises 404:</th><td class="field-body"><p class="first last">if the User could not be found</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Requests</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/users/1">/users/1</a></li>
+<li><a class="reference external" href="/users/2">/users/2</a></li>
+</ul>
+<p><strong>Example Response</strong>:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;created_time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue, 25 Aug 2015 18:30:27 GMT&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;nick&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;full_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Nick Aversano&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;received_messages&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;sent_messages&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--users-(list-user_ids)">
+<code class="descname">GET </code><code class="descname">/users/</code><span class="sig-paren">(</span><em class="property">list: </em><em>user_ids</em><span class="sig-paren">)</span><a class="headerlink" href="#get--users-(list-user_ids)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show Multiple Users</p>
+<p><strong>Example Requests</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/users/1,2">/users/1,2</a></li>
+<li><a class="reference external" href="/users/1,2,3,4,5,6">/users/1,2,3,4,5,6</a></li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>user_ids</strong> (<em>list</em>) &#8211; a comma-separated list of user ids</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an Array of <a class="reference external" href="#users">Users</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h2>Messages<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The Message object represents a single message sent from one user to another. The message object looks like this:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;hey!&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;delivered_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;from_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;read_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;sent_time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue, 25 Aug 2015 18:30:27 GMT&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;to_id&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where from_id and to_id are the corresponding <a class="reference external" href="#users">Users</a>. The following actions can be performed on messages:</p>
+</div></blockquote>
+<dl class="get">
+<dt id="get--messages">
+<code class="descname">GET </code><code class="descname">/messages</code><a class="headerlink" href="#get--messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get All Messages</p>
+<p>Gets all messages sent on this server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">an Array of <a class="reference external" href="#id5">Messages</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Request</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/messages">/messages</a></li>
+</ul>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--messages">
+<code class="descname">POST </code><code class="descname">/messages</code><a class="headerlink" href="#post--messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a New Message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>from_id</strong> (<em>int</em>) &#8211; the User id the message is being sent from</li>
+<li><strong>to_id</strong> (<em>int</em>) &#8211; the User id to send to</li>
+<li><strong>content</strong> (<em>str</em>) &#8211; the message</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; the password for user with id from_id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises 400:</th><td class="field-body"><p class="first">if any of the above parameters are omitted, if the password is invalid or no user exists with from_id and to_id</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the user_id of the user created</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--messages-(int-message_id)">
+<code class="descname">GET </code><code class="descname">/messages/</code><span class="sig-paren">(</span><em class="property">int: </em><em>message_id</em><span class="sig-paren">)</span><a class="headerlink" href="#get--messages-(int-message_id)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a Message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>message_id</strong> (<em>int</em>) &#8211; the integer id of the message</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a Message object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises 404:</th><td class="field-body"><p class="first last">if the Message could not be found</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Requests</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/messages/1">/messages/1</a></li>
+<li><a class="reference external" href="/messages/2">/messages/2</a></li>
+</ul>
+<p><strong>Example Response</strong>:</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;hey!&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;delivered_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;from_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;read_time&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;sent_time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue, 25 Aug 2015 18:30:27 GMT&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;to_id&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--messages-(list-message_ids)">
+<code class="descname">GET </code><code class="descname">/messages/</code><span class="sig-paren">(</span><em class="property">list: </em><em>message_ids</em><span class="sig-paren">)</span><a class="headerlink" href="#get--messages-(list-message_ids)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show Multiple Messages</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>message_ids</strong> (<em>list</em>) &#8211; a comma-separated list of message ids</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an Array of <a class="reference external" href="#id5">Messages</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example Requests</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="/messages/1,2">/messages/1,2</a></li>
+<li><a class="reference external" href="/messages/1,2,3,4">/messages/1,2,3,4</a></li>
+<li><a class="reference external" href="/messages/2,">/messages/2,</a> - force array response with trailing comma</li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="related bottom">
+  <nav id="rellinks">
+    <ul>
+    </ul>
+  </nav>
+  <nav id="breadcrumbs">
+    <ul>
+      <li><a href="#">Messaging API 1.0 documentation</a></li> 
+    </ul>
+  </nav>
+  </div>
+  <footer id="pagefooter">
+
+  </footer>
+
+  
+  </body>
+</html>

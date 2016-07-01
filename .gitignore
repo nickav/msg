@@ -17,3 +17,7 @@ bower_components/
 
 # Vim Swap files
 *.swp
+*.swo
+
+# built api docs website
+build/

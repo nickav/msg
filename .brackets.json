@@ -1,0 +1,19 @@
+{
+    "sass.enabled": false,
+    "path": {
+        "app/assets/sass/main.scss": {
+            "sass.enabled": true,
+            "sass.options": {
+                "outputDir": "../../static/css",
+                "imagePath": null,
+                "sourceComments": false,
+                "outputStyle": "nested"
+            },
+            "linting.collapsed": false,
+            "themes.theme": "rain.monokai-dark-soda",
+            "useTabChar": false,
+            "spaceUnits": 2,
+            "brackets-git.gitPath": "git"
+        }
+    }
+}

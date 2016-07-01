@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body class="error_page">
+  <h1>
+    <span class="callout">404</span>
+    Not sure what you were looking for.
+  </h1>
+  <h3 id="question">
+    Have you tried turning it on and off again?
+  </h3>
+  
+  <script type="text/javascript">
+    var question = document.getElementById('question');
+    var questions = ['Have you tried turing it on and off again?',
+                     'Ever feel like you\'re in the wrong place?',
+                     'Here\'s a picture of a puppy instead:<br><img src="http://cdn.sheknows.com/articles/2013/04/Puppy_2.jpg" />'
+                    ];
+    
+    var randomIndex = Math.floor(Math.random() * questions.length);
+    question.innerHTML = questions[randomIndex];
+  </script>
+</body>
+</html>
